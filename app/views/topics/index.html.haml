@@ -1,0 +1,6 @@
+- @topics.each do |topic|
+  .topic
+    = link_to topic.name, topic.subreddit_url
+    #{topic.active_user_count} / #{topic.subscribers} /
+    %strong
+      #{activity_ratio topic}

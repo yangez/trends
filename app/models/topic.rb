@@ -7,4 +7,8 @@ class Topic < ApplicationRecord
     "/r/#{name}"
   end
 
+  def subreddit_url
+    "https://www.reddit.com/r/#{name}"
+  end
+
 end
