@@ -6,8 +6,11 @@ class CreateSnapshotForTopic
   delegate :name, to: :topic
 
   def call
-    topic.snapshots.create(data_params)
-    topic.update(data_params)
+    Topic.transaction do
+      topic.snapshots.create(data_params)
+      topic.update(data_params)
+    end
+    puts "Finished syncing #{topic.name}."
   end
 
   protected
