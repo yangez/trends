@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :topics, only: [:index, :show], param: :name
+  root to: 'topics#index'
+  resources :topics, only: [:show], param: :name
 end
