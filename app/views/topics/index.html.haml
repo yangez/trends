@@ -2,5 +2,9 @@
   .topic
     = link_to topic.name, topic.subreddit_url
     #{topic.active_user_count} / #{topic.subscribers} /
-    %strong
-      #{activity_ratio topic}
+    %strong= percentage topic.activity_ratio
+    = surround '(', ')' do
+      = link_to "details", topic_path(topic.name)
+    - if topic.delta(:hour).present?
+      Delta:
+      %strong= percentage topic.delta(:hour)
