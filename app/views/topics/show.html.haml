@@ -1,2 +1,13 @@
 %h1= @topic.subreddit_name
-%span hello
+
+%p
+  Active users:
+  %strong= @topic.active_user_count
+
+%p
+  All subscribers:
+  %strong= @topic.subscribers
+
+%p
+  Ratio:
+  %strong= activity_ratio @topic

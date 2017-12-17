@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217021417) do
+ActiveRecord::Schema.define(version: 20171217033357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "snapshots", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.integer "active_user_count"
+    t.integer "subscribers"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_snapshots_on_topic_id"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string "name"
