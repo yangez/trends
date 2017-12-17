@@ -7,5 +7,4 @@ class CreateSnapshotsForAllTopics
       CreateSnapshotForTopic.call(topic: topic)
     end
   end
-
 end

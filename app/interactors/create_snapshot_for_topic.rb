@@ -7,13 +7,13 @@ class CreateSnapshotForTopic
 
   def call
     topic.snapshots.create(data_params)
+    topic.update(data_params)
   end
 
   protected
 
   def data_params
     {
-      topic: topic,
       active_user_count: active_user_count,
       subscribers: subscribers,
       activity_ratio: activity_ratio
