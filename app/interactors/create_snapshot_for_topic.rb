@@ -15,7 +15,8 @@ class CreateSnapshotForTopic
     {
       topic: topic,
       active_user_count: active_user_count,
-      subscribers: subscribers
+      subscribers: subscribers,
+      activity_ratio: activity_ratio
     }
   end
 
@@ -25,6 +26,10 @@ class CreateSnapshotForTopic
 
   def subscribers
     reddit_data["subscribers"]
+  end
+
+  def activity_ratio
+    active_user_count*1.0 / subscribers
   end
 
   def reddit_data
