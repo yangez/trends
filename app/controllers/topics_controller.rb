@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.order(activity_ratio: :desc)
+    @topics = Topic.all
   end
 
   def show

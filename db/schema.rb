@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217041642) do
+ActiveRecord::Schema.define(version: 20171219074628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20171217041642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "activity_ratio", null: false
+    t.jsonb "delta"
     t.index ["topic_id"], name: "index_snapshots_on_topic_id"
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20171217041642) do
     t.integer "active_user_count"
     t.integer "subscribers"
     t.decimal "activity_ratio"
+    t.jsonb "delta"
   end
 
 end

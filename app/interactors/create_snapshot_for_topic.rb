@@ -19,7 +19,10 @@ class CreateSnapshotForTopic
     {
       active_user_count: active_user_count,
       subscribers: subscribers,
-      activity_ratio: activity_ratio
+      activity_ratio: activity_ratio,
+      delta: {
+        hour: delta_for(:hour)
+      }
     }
   end
 
@@ -34,6 +37,21 @@ class CreateSnapshotForTopic
   def activity_ratio
     active_user_count*1.0 / subscribers
   end
+
+  def delta_for(period)
+    previous = snapshot_from_last period
+    return if previous.nil?
+    
+    (activity_ratio - previous.activity_ratio) / previous.activity_ratio
+  end
+
+  VALID_PERIODS = %i(hour)
+  def snapshot_from_last(period)
+    return unless VALID_PERIODS.include? period
+    topic.snapshots.find_by(created_at: 1.public_send(period).ago-5.minutes...Time.current)
+  end
+
+  protected
 
   def reddit_data
     JSON.parse(reddit_request.body)["data"]

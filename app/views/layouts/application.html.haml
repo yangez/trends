@@ -2,10 +2,20 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Trends
+    %title KissTrends
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     .container
-      = yield
+      .row
+        .col-md-3.sidebar
+          %nav.sidebar-nav
+            .sidebar-header
+              = link_to root_url, class: 'sidebar-brand' do
+                %h2
+                  kiss
+                  %span.text-muted> trends
+
+        .col-md-9.content
+          = yield

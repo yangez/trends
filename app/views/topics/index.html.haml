@@ -1,10 +1,26 @@
-- @topics.each do |topic|
-  .topic
-    = link_to topic.name, topic.subreddit_url
-    #{topic.active_user_count} / #{topic.subscribers} /
-    %strong= percentage topic.activity_ratio
-    = surround '(', ')' do
-      = link_to "details", topic_path(topic.name)
-    - if topic.delta(:hour).present?
-      Delta:
-      %strong= percentage topic.delta(:hour)
+.dashhead
+  .dashhead-titles
+    %h6.dashhead-subtitle Subreddits
+    %h2.dashhead-title Top 500
+
+.table-responsive
+  %table.table{data: { sort: 'table' }}
+    %thead
+      %tr
+        %th.header /r/
+        %th.header Active Users
+        %th.header Subscribers
+        %th.header Activity Ratio
+        %th.header Delta (hour)
+        %th.header Details
+    %tbody
+      - @topics.each do |topic|
+        %tr
+          %td= link_to topic.name, topic.subreddit_url
+          %td= topic.active_user_count
+          %td= topic.subscribers
+          %td= percentage topic.activity_ratio
+          %td
+            - if topic.delta_hour.present?
+              = percentage topic.delta_hour
+          %td= link_to "View", topic_path(topic.name)
