@@ -1,0 +1,11 @@
+- if Rails.env.production?
+  -# gtag manager (Google Analytics)
+  %script{src: "https://www.googletagmanager.com/gtag/js?id=UA-111474828-1", async: true}
+  :javascript
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    $(document).on('turbolinks:load', function() {
+      gtag('config', 'UA-111474828-1', {'page_path': window.location.pathname});
+    });
