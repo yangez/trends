@@ -10,7 +10,7 @@ document.addEventListener "turbolinks:load", ->
       cssDesc: 'headerSortUp'
       cssAsc: 'headerSortDown'
       initialized: ->
-        $table.fadeIn(200)
+        $table.show()
     .appendTablesorterPagerControls
       controlsOutput: '{first}{prev}{display}{next}{last}'
       output: '<strong>{startRow}-{endRow}</strong> / {totalRows}'
