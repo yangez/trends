@@ -6,3 +6,8 @@ document.addEventListener "turbolinks:load", ->
   if $("[data-sort=table]").length
     $("[data-sort=table]").tablesorter
       sortList: [[4, 1]]
+      cssDesc: 'headerSortUp'
+      cssAsc: 'headerSortDown'
+    .appendTablesorterPagerControls
+      controlsOutput: '{first}{prev}{display}{next}{last}'
+      output: '<strong>{startRow}-{endRow}</strong> / {totalRows}'

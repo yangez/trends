@@ -1,4 +1,17 @@
 @import "bootstrap";
+@import "font-awesome";
 @import "toolkit";
 @import "layout";
 @import "topics";
+
+.tablesorterPagerControls {
+  .prev, .next, .first, .last { @extend .btn, .btn-xs, .btn-secondary; }
+  .prev, .next { margin: 0 5px; }
+  .prev { margin-right: 10px; }
+  .next { margin-left: 10px; }
+  .pagedisplay {
+    position: relative;
+    top: 1px;
+    opacity: 0.8;
+  }
+}

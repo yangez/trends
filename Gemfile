@@ -43,6 +43,8 @@ gem 'httparty'
 
 gem 'memoist'
 
+gem 'font-awesome-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
