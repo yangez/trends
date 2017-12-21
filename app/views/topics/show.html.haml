@@ -1,13 +1,21 @@
-%h1= @topic.subreddit_name
+.dashhead
+  .dashhead-titles
+    %h6.dashhead-subtitle Subreddits
+    %h2.dashhead-title= @topic.subreddit_name
 
-%p
-  Active users:
-  %strong= @topic.active_user_count
-
-%p
-  All subscribers:
-  %strong= @topic.subscribers
-
-%p
-  Ratio:
-  %strong= activity_ratio @topic
+.row.statcards
+  .col-md-6.col-xl-3.mb-3.mb-md-4.mb-xl-0
+    .statcard.statcard-success
+      .p-3
+        %span.statcard-desc Active Users
+        %h2.statcard-number= number_with_delimiter @topic.active_user_count
+  .col-md-6.col-xl-3.mb-3.mb-md-4.mb-xl-0
+    .statcard.statcard-danger
+      .p-3
+        %span.statcard-desc Subscribers
+        %h2.statcard-number= number_with_delimiter @topic.subscribers
+  .col-md-6.col-xl-3.mb-3.mb-md-4.mb-xl-0
+    .statcard.statcard-info
+      .p-3
+        %span.statcard-desc Activity Ratio
+        %h2.statcard-number= percentage @topic.activity_ratio

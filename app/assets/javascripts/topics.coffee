@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-  $("[data-sort=table]").tablesorter
-    sortList: [[4, 1]]
+document.addEventListener "turbolinks:load", ->
+  if $("[data-sort=table]").length
+    $("[data-sort=table]").tablesorter
+      sortList: [[4, 1]]
