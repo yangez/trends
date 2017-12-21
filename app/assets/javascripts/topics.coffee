@@ -3,11 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 document.addEventListener "turbolinks:load", ->
-  if $("[data-sort=table]").length
-    $("[data-sort=table]").tablesorter
+  $table = $("[data-sort=table]")
+  if $table.length
+    $table.tablesorter
       sortList: [[4, 1]]
       cssDesc: 'headerSortUp'
       cssAsc: 'headerSortDown'
+      initialized: ->
+        $table.fadeIn(200)
     .appendTablesorterPagerControls
       controlsOutput: '{first}{prev}{display}{next}{last}'
       output: '<strong>{startRow}-{endRow}</strong> / {totalRows}'

@@ -4,6 +4,9 @@
 @import "layout";
 @import "topics";
 
+// Displayed through JS
+[data-sort=table] { display: none; }
+
 .tablesorterPagerControls {
   .prev, .next, .first, .last { @extend .btn, .btn-xs, .btn-secondary; }
   .prev, .next { margin: 0 5px; }

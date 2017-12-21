@@ -17,10 +17,10 @@
       - @topics.each do |topic|
         %tr
           %td= link_to topic.name, topic.subreddit_url
-          %td= topic.active_user_count
-          %td= topic.subscribers
+          %td= number_with_delimiter topic.active_user_count
+          %td= number_with_delimiter topic.subscribers
           %td= percentage topic.activity_ratio
-          %td
+          %td{class: positive_negative_color_class(topic.delta_hour)}
             - if topic.delta_hour.present?
-              = percentage topic.delta_hour
+              = percentage topic.delta_hour, precision: 0
           %td= link_to "View", topic_path(topic.name)
