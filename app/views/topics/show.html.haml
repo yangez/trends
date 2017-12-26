@@ -19,3 +19,7 @@
       .p-3
         %span.statcard-desc Activity Ratio
         %h2.statcard-number= percentage @topic.activity_ratio
+
+.row.mt-5
+  .col-md-12
+    %canvas#historical-chart{data: {points: @chart_data.data.to_s.html_safe, labels: @chart_data.labels.to_s.html_safe}}
