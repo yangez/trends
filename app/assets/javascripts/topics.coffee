@@ -6,7 +6,7 @@ document.addEventListener "turbolinks:load", ->
 
   # Table on #index
   $table = $("[data-sort=table]")
-  if $table.length
+  if $table.length && !$("#tableSorterPager1").length
     $table.tablesorter
       sortList: [[4, 1]]
       cssDesc: 'headerSortUp'
