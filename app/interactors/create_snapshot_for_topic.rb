@@ -18,12 +18,13 @@ class CreateSnapshotForTopic
   def final_params
     initial_params.merge(delta: {
       hour: Snapshots::Delta.new(
-        topic.snapshots.new(initial_params),
+        Snapshot.new(initial_params),
         latest_snapshot,
         type: :activity_ratio,
         interval: :hour).value
     })
   end
+  memoize :final_params
 
   def initial_params
     {
