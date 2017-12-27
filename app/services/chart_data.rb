@@ -10,7 +10,7 @@ class ChartData
   end
 
   def data
-    snapshots.map { |s| (s.activity_ratio*100).round(2) }
+    snapshots.map { |s| (s.activity_ratio*100).round(3) }
   end
 
   protected
