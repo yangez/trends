@@ -7,22 +7,29 @@ class CreateSnapshotForTopic
 
   def call
     Topic.transaction do
-      topic.snapshots.create(data_params)
-      topic.update(data_params)
+      topic.snapshots.create(final_params)
+      topic.update(final_params)
     end
     puts "Finished syncing #{topic.name}."
   end
 
   protected
 
-  def data_params
+  def final_params
+    initial_params.merge(delta: {
+      hour: Snapshots::Delta.new(
+        topic.snapshots.new(initial_params),
+        latest_snapshot,
+        type: :activity_ratio,
+        interval: :hour).value
+    })
+  end
+
+  def initial_params
     {
       active_user_count: active_user_count,
       subscribers: subscribers,
-      activity_ratio: activity_ratio,
-      delta: {
-        hour: delta_for(:hour)
-      }
+      activity_ratio: activity_ratio
     }
   end
 
@@ -38,20 +45,10 @@ class CreateSnapshotForTopic
     active_user_count*1.0 / subscribers
   end
 
-  def delta_for(period)
-    previous = snapshot_from_last period
-    return if previous.nil?
-    
-    (activity_ratio - previous.activity_ratio) / previous.activity_ratio
+  def latest_snapshot
+    Topics::Traverse.new(topic, :hour).current
   end
-
-  VALID_PERIODS = %i(hour)
-  def snapshot_from_last(period)
-    return unless VALID_PERIODS.include? period
-    topic.snapshots.find_by(created_at: 1.public_send(period).ago-5.minutes...Time.current)
-  end
-
-  protected
+  memoize :latest_snapshot
 
   def reddit_data
     JSON.parse(reddit_request.body)["data"]

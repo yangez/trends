@@ -16,7 +16,7 @@ class ChartData
   protected
 
   def snapshots
-    topic.snapshots.order(id: :desc).limit(24).reverse
+    Topics::Traverse.new(topic).snapshots
   end
 
 end
