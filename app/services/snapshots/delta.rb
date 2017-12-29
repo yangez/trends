@@ -5,8 +5,7 @@ module Snapshots
     attr_reader :previous, :current, :type, :interval
 
     VALID_INTERVALS = %i(hour)
-    VALID_TYPES = %i(activity_ratio)
-    # VALID_TYPES = %i(activity_ratio subscribers active_user_count)
+    VALID_TYPES = %i(activity_ratio subscribers active_user_count)
 
     class InvalidIntervalError < StandardError; end
     class InvalidTypeError < StandardError; end

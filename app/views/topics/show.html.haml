@@ -1,24 +1,28 @@
 .dashhead
   .dashhead-titles
     %h6.dashhead-subtitle Subreddits
-    %h2.dashhead-title= @topic.subreddit_name
+    %h2.dashhead-title= @chart_data.subreddit_name
 
 .row.statcards
   .col-md-6.col-xl-3.mb-3.mb-md-4.mb-xl-0
     .statcard.statcard-success
       .p-3
         %span.statcard-desc Active Users
-        %h2.statcard-number= number_with_delimiter @topic.active_user_count
+        %h2.statcard-number
+          = number_to_human @chart_data.active_user_count.value
   .col-md-6.col-xl-3.mb-3.mb-md-4.mb-xl-0
     .statcard.statcard-danger
       .p-3
         %span.statcard-desc Subscribers
-        %h2.statcard-number= number_with_delimiter @topic.subscribers
+        %h2.statcard-number
+          = number_to_human @chart_data.subscribers.value
   .col-md-6.col-xl-3.mb-3.mb-md-4.mb-xl-0
     .statcard.statcard-info
       .p-3
         %span.statcard-desc Activity Ratio
-        %h2.statcard-number= percentage @topic.activity_ratio
+        %h2.statcard-number
+          = percentage @chart_data.activity_ratio.value
+          = delta_indicator @chart_data.activity_ratio.delta
 
 .row.mt-5
   .col-md-12

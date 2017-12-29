@@ -11,4 +11,12 @@ module TopicsHelper
       'text-danger'
     end
   end
+
+  def delta_indicator(delta)
+    color = delta >= 0 ? 'delta-positive' : 'delta-negative'
+    content_tag :small, class: "delta-indicator #{color}" do
+      number_to_percentage delta*100, precision: 0
+    end
+  end
+
 end

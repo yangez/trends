@@ -1,7 +1,7 @@
 # Responsible for traversing between snapshots from a single topic
 # Currently only works for :hour
 module Topics
-  class Traverse
+  class Traverse < BaseService
     extend Memoist
     attr_reader :topic, :interval
 
@@ -26,6 +26,7 @@ module Topics
     def snapshots
       topic.snapshots.order(id: :desc).limit(24).reverse
     end
+    memoize :snapshots
 
   end
 end
