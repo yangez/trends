@@ -5,6 +5,6 @@ class TopicsController < ApplicationController
 
   def show
     topic = Topic.find_by(name: params[:name])
-    @chart_data = ChartData.new(topic)
+    @chart_data = Topics::ChartData.new(topic)
   end
 end
